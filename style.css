@@ -1,0 +1,275 @@
+* {
+    font-family: 'Gill Sans', 'Gill Sans MT', Calibri, 'Trebuchet MS', sans-serif;
+}
+
+body {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    height: 100vh;
+    margin: 0;
+}
+
+#background {
+    position: absolute;
+    width: 100%;
+    height: 100%;
+    background: url("images/favicon.png") center/cover no-repeat;
+    overflow: hidden;
+}
+
+#overlay {
+    position: fixed;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    pointer-events: none;
+    z-index: 2;
+}
+
+#overlay1, #overlay2 {
+    width: 50%;
+    height: 100%;
+    position: absolute;
+    display: flex;
+    background-color: #FFA500;
+}
+
+#overlay1 {
+    animation: none;
+    left: 0;
+}
+
+#overlay2 {
+    animation: none;
+    right: 0;
+}
+
+#overlay p {
+    position: absolute;
+    font-size: 50pt;
+    animation: none;
+    z-index: 2;
+    animation: fadeIn 2s ease-out forwards;
+}
+
+#elements h5 {
+    animation: reverseSlide1 2s ease-out forwards;
+    opacity: 0;
+    animation-delay: 1.5s;
+    font-size: 14pt;
+    font-weight: 100;
+}
+
+#elements #buttons {
+    animation: reverseSlide2 2s ease-out forwards;
+    opacity: 0;
+    animation-delay: 1.5s;
+}
+
+#elements {
+    z-index: 2;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+    gap: 75px;
+}
+
+@keyframes reverseSlide1 {
+    0% {
+        transform: translateX(-100%);
+        opacity: 0;
+    }
+
+    100% {
+        transform: translateX(0);
+        opacity: 1;
+    }
+}
+
+@keyframes reverseSlide2 {
+    0% {
+        transform: translateX(100%);
+        opacity: 0;
+    }
+
+    100% {
+        transform: translateX(0);
+        opacity: 1;
+    }
+}
+
+@keyframes slide1 {
+    0% {
+        transform: translateX(0);
+    }
+
+    100% {
+        transform: translateX(-100%);
+    }
+}
+
+@keyframes slide2 {
+    0% {
+        transform: translateX(0);
+    }
+
+    100% {
+        transform: translateX(100%);
+    }
+}
+
+@keyframes fadeOut {
+    0% {
+        opacity: 1;
+    }
+
+    100% {
+        opacity: 0;
+        visibility: hidden;
+    }
+}
+
+@keyframes fadeIn {
+    0% {
+        opacity: 0;
+    }
+
+    100% {
+        opacity: 1;
+    }
+}
+
+@keyframes fadeMove1 {
+    0% {
+        opacity: 1;
+        transform: translateX(0) translateY(0) scale(1);
+    }
+    25% {
+        opacity: 1;
+        transform: translateX(50px) translateY(0) scale(1);
+    }
+    100% {
+        opacity: 0;
+        transform: translateX(50px) translateY(-120px) scale(0.7);
+    }
+}
+
+@keyframes fadeMove2 {
+    0% {
+        opacity: 1;
+        transform: translateX(0) translateY(0) scale(1);
+    }
+    25% {
+        opacity: 1;
+        transform: translateX(50px) translateY(0) scale(1);
+    }
+    100% {
+        opacity: 0;
+        transform: translateX(50px) translateY(-50px) scale(0.85);
+    }
+}
+
+#container {
+    margin: 0;
+    position: absolute;
+    width: auto;
+    padding: 30px 40px 10px 40px;
+    overflow: hidden;
+    border-radius: 10px;
+    display: none;
+    flex-direction: column;
+    font-family: Arial;
+    background: #FFA500;
+    justify-content: center;
+    align-items: center;
+    animation: none;
+    animation-delay: 1s;
+}
+
+#logo {
+    width: 200px;
+    top: 0;
+    padding: 10px;
+}
+
+#buttons {
+    pointer-events: auto;
+    display: flex;
+    gap: 20px;
+    flex-direction: column;
+}
+
+button {
+    display: inline-block;
+    border: 1px solid black;
+    padding: 5px;
+    font-size: 14pt;
+    border-radius: 20px;
+    transition: transform 0.15s ease-in-out;
+    background: linear-gradient(125deg, #00d6d6, #7880c7);
+}
+
+button:hover, button p:hover {
+    transform: scale(1.05);
+    cursor: pointer;
+}
+
+button:hover p, button:hover span {
+    animation: flash 1s ease-out forwards;
+}
+
+@keyframes flash {
+    0% {
+        opacity: 1;
+    }
+
+    25% {
+        opacity: 0;
+    }
+
+    50% {
+        opacity: 1;
+    }
+
+    75% {
+        opacity: 0;
+    }
+
+    100% {
+        opacity: 1;
+    }
+}
+
+#sound {
+    opacity: 70%;
+    transition: transform 0.15s ease-in-out;
+    top: 1%;
+    right: 1%;
+    width: 30px;
+    position: absolute;
+}
+
+#home {
+    opacity: 70%;
+    transition: transform 0.15s ease-in-out;
+    top: 1%;
+    left: 1%;
+    width: 30px;
+    position: absolute;
+}
+
+#sound:hover, #home:hover {
+    opacity: 1;
+    transform: scale(1.05);
+    cursor: pointer;
+}
+
+#options {
+    padding: 15px;
+}
