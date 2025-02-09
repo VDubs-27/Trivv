@@ -273,3 +273,11 @@ button:hover p, button:hover span {
 #options {
     padding: 15px;
 }
+
+#play {
+    width: 100px;
+    height: 40px;
+    justify-content: center;
+    align-items: center;
+    display: flex;
+}

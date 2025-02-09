@@ -11,6 +11,60 @@ const subtitle = document.getElementById("subtitle");
 const sound = document.getElementById("sound");
 const home = document.getElementById("home");
 let mute = true;
+let checkboxes = {};
+let selected = [];
+let categories;
+let labels = [];
+let quiz = [];
+let amount = 0;
+let number;
+let cat;
+let buffer = 0;
+
+async function GenerateTrivia(selected, amount) {
+
+    cat = selected[0].cat;
+
+    if (selected.length === 1 && !selected.some(item => item.id === "all" || item.id === "science" || item.id === "entertainment")) {
+        number = amount;
+    }
+    else {
+        number = 50;
+    }
+
+    const url = `https://opentdb.com/api.php?amount=${number}&type=multiple&category=${cat}`;
+
+    try {
+        const response = await fetch(url);
+        if (!response.ok) {
+            alert("Reload and Try again.");
+        }
+
+        const data = await response.json();
+        console.log("Trivia questions:", data.results);
+
+        for (let i = 0; i < data.results.length; i++) {
+            if (buffer == amount) {
+                break;
+            }
+            else if (buffer < amount && i == data.results.length - 1) {
+                setTimeout(() => {
+                    GenerateTrivia(selected, amount);
+                }, 5000);
+            }
+
+            if (selected.some(item => item.label === data.results[i].category) || selected.some(item => data.results[i].category.includes(item.label))) {
+                quiz.push(data.results[i]);
+                buffer++;
+                console.log(quiz);
+            }
+        }
+    }
+    catch (error) {
+        console.error("Error fetching trivia questions:", error);
+        alert("Reload and Try again.");
+    }
+}
 
 begin.addEventListener("click", () => {
     overlay1.style.animation = "slide1 3s ease-out forwards";
@@ -70,30 +124,30 @@ spBtn.addEventListener("click", () => {
     qLabel.innerText = "Number of Questions: ";
     const questions = document.createElement("input");
     questions.type = "number";
-    questions.max = "100";
+    questions.max = "50";
     const catLabel = document.createElement("label");
     catLabel.innerText = "Select Categories: ";
 
     form.appendChild(qLabel);
     form.appendChild(questions);
     form.appendChild(document.createElement("br"));
-    form.appendChild(catLabel);
-    form.appendChild(document.createElement("br"));
+    options.appendChild(catLabel);
+    options.appendChild(document.createElement("br"));
 
     const categories = [
-        { label: "All", id: "all" },
-        { label: "Entertainment", id: "entertainment" },
-        { label: "Science", id: "science" },
-        { label: "General Knowledge", id: "gk" },
-        { label: "Mythology", id: "mythology" },
-        { label: "Sports", id: "sports" },
-        { label: "Geography", id: "geography" },
-        { label: "History", id: "history" },
-        { label: "Politics", id: "politics" },
-        { label: "Art", id: "art" },
-        { label: "Celebrities", id: "celebrities" },
-        { label: "Animals", id: "animals" },
-        { label: "Vehicles", id: "vehicles" }
+        { label: "Select All", id: "all", cat: 0 },
+        { label: "Entertainment", id: "entertainment", cat: 0 },
+        { label: "Science", id: "science", cat: 0 },
+        { label: "General Knowledge", id: "gk", cat: 9 },
+        { label: "Mythology", id: "mythology", cat: 20 },
+        { label: "Sports", id: "sports", cat: 21 },
+        { label: "Geography", id: "geography", cat: 22 },
+        { label: "History", id: "history", cat: 23 },
+        { label: "Politics", id: "politics", cat: 24 },
+        { label: "Art", id: "art", cat: 25 },
+        { label: "Celebrities", id: "celebrities", cat: 26 },
+        { label: "Animals", id: "animals", cat: 27 },
+        { label: "Vehicles", id: "vehicles", cat: 28 }
     ];
 
     categories.forEach(category => {
@@ -102,9 +156,17 @@ spBtn.addEventListener("click", () => {
         label.innerText = category.label;
 
         const checkbox = document.createElement("input");
-        checkbox.type = "checkbox";
+        checkbox.type = "radio";
         checkbox.id = category.id;
         checkbox.name = "category";
+
+        checkbox.addEventListener("change", () => {
+            if (checkbox.checked) {
+                selected.pop();
+                selected.push({label: category.label, id: category.id, cat: category.cat});
+                console.log(selected);
+            }
+        });
 
         options.appendChild(checkbox);
         options.appendChild(label);
@@ -112,5 +174,24 @@ spBtn.addEventListener("click", () => {
     });
 
     form.appendChild(options);
+    
+    const play = document.createElement("button");
+    play.id = "play";
+    play.innerHTML = `<p>Play</p>`;
+    form.appendChild(play);
+
     container.appendChild(form);
+
+    play.addEventListener("click", (event) => {
+        event.preventDefault();
+        if (questions.value && questions.value <= 50 && questions.value > 0) {
+            form.remove();
+            logo.style.display = "none";
+            amount = questions.value;
+            GenerateTrivia(selected, amount);
+        }
+        else {
+            alert("Please enter a valid number between 1 and 50!")
+        }
+    });
 });
