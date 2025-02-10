@@ -14,7 +14,7 @@ body {
     position: absolute;
     width: 100%;
     height: 100%;
-    background: url("images/favicon.png") center/cover no-repeat;
+    background: url("images/bg.png") center/cover no-repeat;
     overflow: hidden;
 }
 
@@ -36,7 +36,7 @@ body {
     height: 100%;
     position: absolute;
     display: flex;
-    background-color: #FFA500;
+    background-color: #FF914D;
 }
 
 #overlay1 {
@@ -257,7 +257,7 @@ button:hover p, button:hover span {
     }
     50% {
         transform: translateY(0) scale(1.1);
-        background-color: #FFA500;
+        background-color: #FF914D;
     }
     75% {
         transform: translateY(-5px);
