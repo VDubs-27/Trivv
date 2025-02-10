@@ -113,12 +113,19 @@ function Start(quiz, amount) {
 
         let rightAnswer;
 
+        const correctSound = document.getElementById("correct");
+        const incorrectSound = document.getElementById("incorrect");
+
         if (answer.textContent == correctAnswer) {
             correct++;
             answer.style.backgroundColor = "rgba(0, 255, 0, 0.5)";
+            correctSound.volume = 0.5;
+            correctSound.play();
         }
         else {
             answer.style.backgroundColor = "rgba(255, 0, 0, 0.5)";
+            incorrectSound.volume = 0.5;
+            incorrectSound.play();
 
             rightAnswer = [...document.querySelectorAll("#answers p")].find(option => option.textContent === correctAnswer);
             if (rightAnswer) {
