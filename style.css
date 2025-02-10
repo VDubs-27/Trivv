@@ -185,7 +185,7 @@ body {
     display: none;
     flex-direction: column;
     font-family: Arial;
-    background: #FFA500;
+    background: rgb(248, 248, 248);
     justify-content: center;
     align-items: center;
     animation: none;
@@ -246,6 +246,29 @@ button:hover p, button:hover span {
     }
 }
 
+@keyframes load {
+    0% {
+        transform: translateY(0);
+        background-color: #3498db;
+        opacity: 1;
+    }
+    25% {
+        transform: translateY(-10px);
+    }
+    50% {
+        transform: translateY(0) scale(1.1);
+        background-color: #FFA500;
+    }
+    75% {
+        transform: translateY(-5px);
+    }
+    100% {
+        transform: translateY(0);
+        background-color: #3498db;
+        opacity: 0;
+    }
+}
+
 #sound {
     opacity: 70%;
     transition: transform 0.15s ease-in-out;
@@ -280,4 +303,41 @@ button:hover p, button:hover span {
     justify-content: center;
     align-items: center;
     display: flex;
+}
+
+#generation {
+    gap: 5px;
+}
+
+#generation1, #generation2, #generation3 {
+    width: 30px;
+    height: 30px;
+    border-radius: 30px;
+    background-color: #27aae1;
+    animation: load 1s ease-in-out infinite;
+}
+
+#generation2 {
+    animation-delay: 0.33s;
+}
+
+#generation3 {
+    animation-delay: 0.67s;
+}
+
+#question, #answers {
+    text-align: center;
+}
+
+#answer1, #answer2, #answer3, #answer4 {
+    border: 1px solid black;
+    padding: 10px;
+    border-radius: 5px;
+    font-size: 14pt;
+    transition: transform 0.15s ease-in-out;
+}
+
+#answer1:hover, #answer2:hover, #answer3:hover, #answer4:hover {
+    transform: scale(1.05);
+    cursor: pointer;
 }
