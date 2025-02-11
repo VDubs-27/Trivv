@@ -212,7 +212,8 @@ button {
     font-size: 14pt;
     border-radius: 20px;
     transition: transform 0.15s ease-in-out;
-    background: linear-gradient(125deg, #00d6d6, #7880c7);
+    background: #27AAE1;
+    font-weight: 600;
 }
 
 button:hover, button p:hover {
@@ -249,7 +250,7 @@ button:hover p, button:hover span {
 @keyframes load {
     0% {
         transform: translateY(0);
-        background-color: #3498db;
+        background-color: #3498DB;
         opacity: 1;
     }
     25% {
@@ -264,7 +265,7 @@ button:hover p, button:hover span {
     }
     100% {
         transform: translateY(0);
-        background-color: #3498db;
+        background-color: #3498DB;
         opacity: 0;
     }
 }
