@@ -368,14 +368,14 @@ spBtn.addEventListener("click", () => {
 
     play.addEventListener("click", (event) => {
         event.preventDefault();
-        if (questions.value && questions.value <= 50 && questions.value > 0) {
+        if (questions.value && questions.value <= 50 && questions.value >= 1 && Number.isInteger(parseInt(questions.value))) {
             form.remove();
             logo.style.display = "none";
             amount = questions.value;
             GenerateTrivia(selected, amount);
         }
         else {
-            alert("Please enter a valid number between 1 and 50!")
+            alert("Please enter a valid whole number between 1 and 50!")
         }
     });
 });
