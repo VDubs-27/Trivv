@@ -318,18 +318,18 @@ spBtn.addEventListener("click", () => {
     options.appendChild(document.createElement("br"));
 
     const categories = [
-        { label: "Select All", id: "all", cat: 0 },
-        { label: "Entertainment", id: "entertainment", cat: 0 },
-        { label: "Science", id: "science", cat: 0 },
-        { label: "General Knowledge", id: "gk", cat: 9 },
-        { label: "Mythology", id: "mythology", cat: 20 },
-        { label: "Sports", id: "sports", cat: 21 },
-        { label: "Geography", id: "geography", cat: 22 },
-        { label: "History", id: "history", cat: 23 },
-        { label: "Politics", id: "politics", cat: 24 },
+        { label: "All", id: "all", cat: 0 },
+        { label: "Animals", id: "animals", cat: 27 },
         { label: "Art", id: "art", cat: 25 },
         { label: "Celebrities", id: "celebrities", cat: 26 },
-        { label: "Animals", id: "animals", cat: 27 },
+        { label: "Entertainment", id: "entertainment", cat: 0 },
+        { label: "General Knowledge", id: "gk", cat: 9 },
+        { label: "Geography", id: "geography", cat: 22 },
+        { label: "History", id: "history", cat: 23 },
+        { label: "Mythology", id: "mythology", cat: 20 },
+        { label: "Politics", id: "politics", cat: 24 },
+        { label: "Science", id: "science", cat: 0 },
+        { label: "Sports", id: "sports", cat: 21 },
         { label: "Vehicles", id: "vehicles", cat: 28 }
     ];
 
